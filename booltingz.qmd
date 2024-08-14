@@ -1,0 +1,191 @@
+---
+title: "D3practice"
+format: html
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+
+pinyon_pine <- 14
+lodgepole_pine <- 46
+
+#some logical expressions
+
+pinyon_pine == 10
+
+pinyon_pine < lodgepole_pine
+
+lodgepole_pine >= pinyon_pine
+
+lodgepole_pine <= pinyon_pine
+```
+
+```{r}
+Naomi <- 5.25
+
+if(Naomi <= 5.2){
+  print("My 5'2 mouth! First of all...")
+}else
+  print("Height is objective m9")
+
+```
+
+```{r}
+x = 3
+y = 3
+z = -4
+
+if(x < z){
+  print("Hmmmm... try again")
+}else if(x > y){
+  print("Not quite there...")
+}else if(x == 1){
+  print("Nice job!")
+}else
+  print("Back to the drawing board!")
+```
+
+```{r}
+switch("mouse",
+        "cat" = print("c"),
+        "dog" = print("d"),
+        "mouse" = print("m"))
+```
+
+```{r}
+
+dog_init <- c("A", "B", "C", "D")
+
+for(i in dog_init){
+  print(paste(i,"cat"))
+        }
+  
+
+```
+
+
+```{r}
+mass <- seq(from = 0, to = 5, by = 0.5)
+
+mass
+
+for(i in mass){
+  mseq = i + 2
+  print(mseq)
+}
+mass
+for(i in seq_along(mass)){
+  m = mass[i] + 2
+  print(m)
+}
+```
+
+```{r}
+# Create the animals vector:
+animal <- c("cat", "dog", "dog", "zebra", "dog")
+
+# Create the for loop with conditional statement: 
+for (i in animal) {
+  if (i == "dog") {
+    print("I love dogs!")
+  } else
+    print("These are other animals!")
+}
+```
+
+```{r}
+species <- c("dog", "cat", "turtle", "dog")
+
+age_hum <- c(2,4,6,2)
+
+for(i in seq_along(species)){
+if(species[i] == "dog"){
+  age = age_hum[i]*7
+}else if(species[i] == "cat"){
+  age = age_hum[i]*9
+}else if(species[i] == "turtle"){
+  age = age_hum[i]*0.4
+}
+  print(age)
+}
+
+```
+
+Storing for a for loop
+
+```{r}
+#create an empty vector
+
+ani_age <- vector(mode = "numeric", length = length(species))
+
+species <- c("dog", "cat", "turtle", "dog")
+
+age_hum <- c(2,4,6,2)
+
+for(i in seq_along(species)){
+if(species[i] == "dog"){
+  age = age_hum[i]*7
+}else if(species[i] == "cat"){
+  age = age_hum[i]*9
+}else if(species[i] == "turtle"){
+  age = age_hum[i]*0.4
+}
+  ani_age[i] <-  age #populate vector
+}
+
+ani_age
+```
+
+
+```{r}
+mtcars[,2]
+mtcars[2]
+mtcars[[2]]
+```
+
+```{r}
+# Create our storage vector
+# Note: ncol() returns the number of columns in a data frame
+mean_mtcars <- vector(mode = "numeric", length = ncol(mtcars))
+
+# Write the loop
+for (i in seq_along(mtcars)) {
+  mean_val <- mean(mtcars[[i]], na.rm = TRUE)
+  mean_mtcars[[i]] <- mean_val
+}
+
+mean_mtcars
+# Tada.
+```
+
+```{r}
+library(palmerpenguins)
+for (i in seq_along(penguins)) {
+  if (is.numeric(penguins[[i]])) {
+    penguin_med <- median(penguins[[i]], na.rm = TRUE)
+    print(penguin_med)
+  } else {
+    print("non-numeric")
+  }
+}
+```
+
+
+```{r}
+apply(X = mtcars, MARGIN = 2, FUN = mean)
+```
+
+```{r}
+library("tidyverse")
+```
+
+```{r}
+
+penguins %>% 
+  group_by(species) %>% 
+  summarize(across(where(is.numeric), mean, na.rm = TRUE))
+
+```
+
+
